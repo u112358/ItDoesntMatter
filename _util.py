@@ -1,6 +1,5 @@
 import os
 import sys
-from urllib import request
 import langid
 import re
 
@@ -15,18 +14,18 @@ def print_top_words(model, feature_names, n_top_words):
     print(model.components_)
 
 
-def save_img(img_url, file_name, file_path=_FILE_PATH_):
-    try:
-        if not os.path.exists(file_path):
-            print('file', file_path, 'doesn\'t exist, and already established a file')
-            os.makedirs(file_path)
-        file_suffix = os.path.splitext(img_url)[1]
-        filename = '{}{}{}{}'.format(file_path, os.sep, file_name, file_suffix)
-        request.urlretrieve(img_url, filename=filename)
-    except IOError as e:
-        print('file implement error', e)
-    except Exception as e:
-        print('error ：', e)
+# def save_img(img_url, file_name, file_path=_FILE_PATH_):
+#     try:
+#         if not os.path.exists(file_path):
+#             print('file', file_path, 'doesn\'t exist, and already established a file')
+#             os.makedirs(file_path)
+#         file_suffix = os.path.splitext(img_url)[1]
+#         filename = '{}{}{}{}'.format(file_path, os.sep, file_name, file_suffix)
+#         request.urlretrieve(img_url, filename=filename)
+#     except IOError as e:
+#         print('file implement error', e)
+#     except Exception as e:
+#         print('error:', e)
 
 def english_only(text):
     res = langid.classify(text)

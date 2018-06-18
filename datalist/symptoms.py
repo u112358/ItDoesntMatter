@@ -13,7 +13,7 @@ _DECREASED_INTEREST_ = {
     "decreased interest":1,
     # hate
     "hate":1,
-    "animosity":1,"antagonism":1,"enmity":1,"hatred":1,"horror":1,"hostility":1,"loathing":1,"pain":1,"rancor":1,"resentment":1,"revenge":1,"venom":1,"abhorrence":0.5,"abomination":0.5,"anathema":0.5,"animus":0.5,"antipathy":0.5,"aversion":0.5,"bother":0.5,"bugbear":0.5,"detestation":0.5,"disgust":0.5,"execration":0.5,"frost":0.5,"grievance":0.5,"gripe":0.5,"irritant":0.5,"malevolence":0.5,"malignity":0.5,"nuisance":0.5,"objection":0.5,"odium":0.5,"rankling":0.5,"repugnance":0.5,"repulsion":0.5,"revulsion":0.5,"scorn":0.5,"spite":0.5,"trouble":0.5,"black beast":0.1,"bête noire":0.1,"ill will":0.1,"mislike":0.1,"nasty look":0.1,"no love lost":0.1
+    "animosity":1,"antagonism":1,"enmity":1,"hatred":1,"horror":1,"hostility":1,"loathing":1,"pain":1,"rancor":1,"resentment":1,"revenge":1,"venom":1,"abhorrence":0.5,"abomination":0.5,"anathema":0.5,"animus":0.5,"antipathy":0.5,"aversion":0.5,"bother":0.5,"bugbear":0.5,"detestation":0.5,"disgust":0.5,"execration":0.5,"frost":0.5,"grievance":0.5,"gripe":0.5,"irritant":0.5,"malevolence":0.5,"malignity":0.5,"nuisance":0.5,"objection":0.5,"odium":0.5,"rankling":0.5,"repugnance":0.5,"repulsion":0.5,"revulsion":0.5,"scorn":0.5,"spite":0.5,"trouble":0.5,"black beast":0.1,"bete noire":0.1,"ill will":0.1,"mislike":0.1,"nasty look":0.1,"no love lost":0.1
 }
 
 _WEIGHT_CHANGE_ = {
@@ -69,7 +69,7 @@ _CONCENTRATION_ = {
 _SUICIDALITY_ = {
     # suicide
     "suicide":1,
-    "hara-kiri": 0.1, "mélange": 0.1, "self-destruction": 0.1, "self-immolation": 0.1, "seppuku": 0.1
+    "hara-kiri": 0.1, "melange": 0.1, "self-destruction": 0.1, "self-immolation": 0.1, "seppuku": 0.1
 }
 
 

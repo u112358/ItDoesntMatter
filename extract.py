@@ -5,24 +5,17 @@ import re
 import csv
 import math
 sys.path.append('/usr/local/lib/python3.6/site-packages')
-
 import numpy as np
 
-# import cv2 as cv
-from sklearn.decomposition import LatentDirichletAllocation
-from sklearn.feature_extraction.text import CountVectorizer
-import spacy
-nlp = spacy.load('en')
-
-import datalist.emotion_list as emotions
-import datalist.antidepressant_list as antidepressants
-import datalist.symptoms as symptoms
+import emotion_list as emotions
+import antidepressant_list as antidepressants
+import symptoms as symptoms
 import _util
 
-_POSITIVE_PATH_ = '../data/positive/data'
+_POSITIVE_PATH_ = '/Users/vchacha/Dropbox/Supervision/Masters/Junyan/Dataset/labeled/positive/data'
 _POSITIVE_OUTPUT_PATH_ = './outputs/positive.csv'
 _POSITIVE_OUTPUT_TEN_PATH_ = './outputs/positive_ten.csv'
-_NEGATIVE_PATH_ = '../data/negative/data'
+_NEGATIVE_PATH_ = '/Users/vchacha/Dropbox/Supervision/Masters/Junyan/Dataset/labeled/negative/data'
 _NEGATIVE_OUTPUT_PATH_ = './outputs/negative.csv'
 _NEGATIVE_OUTPUT_TEN_PATH_ = './outputs/negative_ten.csv'
 _N_TOPIC_ = 25
@@ -30,7 +23,7 @@ _N_TOPIC_ = 25
 
 class Extract(object):
 
-    def __init__(self,path,output_path, percent=1):
+    def __init__(self,path,output_path, percent=1.0):
 
         self.path = ''
         self.output_path = output_path
@@ -77,7 +70,7 @@ class Extract(object):
             if os.path.isdir(file_path):
                 print( file_path + ' is not a file')
             else:
-                with open(file_path, 'r', encoding="utf-8") as json_file:
+                with open(file_path, 'r') as json_file:
                     user_name = file[:-5]
                     user_data = json.load(json_file)
                     if user_name in self.timelines_path:
@@ -253,26 +246,26 @@ class Extract(object):
         ])
 
     
-    def topic_level(self, user_id, timeline_data, user_list):
-        lda = LatentDirichletAllocation(n_components=_N_TOPIC_,learning_method='online')
-        text_list = []
-        for timeline_tweet in timeline_data:
-            # lower case
-            text = timeline_tweet['text'].lower()
-            print(nlp(text))
-            text_list.append(text)
-
-        cntVector = CountVectorizer()
-        cntTf = cntVector.fit_transform(text_list)
-        topics = lda.fit_transform(cntTf)
-        user_list.append(topics)
+    # def topic_level(self, user_id, timeline_data, user_list):
+    #     lda = LatentDirichletAllocation(n_components=_N_TOPIC_,learning_method='online')
+    #     text_list = []
+    #     for timeline_tweet in timeline_data:
+    #         # lower case
+    #         text = timeline_tweet['text'].lower()
+    #         print(nlp(text))
+    #         text_list.append(text)
+    #
+    #     cntVector = CountVectorizer()
+    #     cntTf = cntVector.fit_transform(text_list)
+    #     topics = lda.fit_transform(cntTf)
+    #     user_list.append(topics)
 
         """ print top 25 topics """
         # feature_names = cntVector.get_feature_names()
         # _util.print_top_words(lda, feature_names, _N_TOPIC_)
 
     def create_csvfile(self):
-        with open(self.output_path, 'w', newline='') as file:
+        with open(self.output_path, 'w') as file:
             writer = csv.writer(file)
             writer.writerow([
                 'user_id',
@@ -303,11 +296,11 @@ class Extract(object):
             writer.writerow(user_list)
 
 
-# test = Extract(_POSITIVE_PATH_, _POSITIVE_OUTPUT_PATH_)
-# test = Extract(_POSITIVE_PATH_, _POSITIVE_OUTPUT_TEN_PATH_, 0.1)
-# test = Extract(_NEGATIVE_PATH_, _NEGATIVE_OUTPUT_PATH_)
-# test = Extract(_NEGATIVE_PATH_, _NEGATIVE_OUTPUT_TEN_PATH_, 0.1)
-test = Extract('demo/data','outputs/output_test.csv')
+test = Extract(_POSITIVE_PATH_, _POSITIVE_OUTPUT_PATH_)
+test1 = Extract(_POSITIVE_PATH_, _POSITIVE_OUTPUT_TEN_PATH_, 0.1)
+test2 = Extract(_NEGATIVE_PATH_, _NEGATIVE_OUTPUT_PATH_)
+test3 = Extract(_NEGATIVE_PATH_, _NEGATIVE_OUTPUT_TEN_PATH_, 0.1)
+
 
 
 
