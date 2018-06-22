@@ -7,15 +7,17 @@ import math
 sys.path.append('/usr/local/lib/python3.6/site-packages')
 import numpy as np
 
-import emotion_list as emotions
-import antidepressant_list as antidepressants
-import symptoms as symptoms
+import datalist.emotion_list as emotions
+import datalist.antidepressant_list as antidepressants
+import datalist.symptoms as symptoms
 import _util
 
-_POSITIVE_PATH_ = '/Users/vchacha/Dropbox/Supervision/Masters/Junyan/Dataset/labeled/positive/data'
+# _POSITIVE_PATH_ = '/Users/vchacha/Dropbox/Supervision/Masters/Junyan/Dataset/labeled/positive/data'
+_POSITIVE_PATH_ = '../data/positive/data'
 _POSITIVE_OUTPUT_PATH_ = './outputs/positive.csv'
 _POSITIVE_OUTPUT_TEN_PATH_ = './outputs/positive_ten.csv'
-_NEGATIVE_PATH_ = '/Users/vchacha/Dropbox/Supervision/Masters/Junyan/Dataset/labeled/negative/data'
+# _NEGATIVE_PATH_ = '/Users/vchacha/Dropbox/Supervision/Masters/Junyan/Dataset/labeled/negative/data'
+_NEGATIVE_PATH_ = '../data/negative/data'
 _NEGATIVE_OUTPUT_PATH_ = './outputs/negative.csv'
 _NEGATIVE_OUTPUT_TEN_PATH_ = './outputs/negative_ten.csv'
 _N_TOPIC_ = 25
@@ -49,6 +51,7 @@ class Extract(object):
             print('path is not a directory')
             return 
 
+        print('start reading data')
         """read timeline files"""
         for idx, file in enumerate(os.listdir(timeline_directory)):
             print('timeline data:',idx+1, ' of ', len(os.listdir(timeline_directory)))
@@ -80,12 +83,14 @@ class Extract(object):
                             with timeline_data as f:
                                 for line in f:
                                     timeline_datas.append(json.loads(line))
-                        print(len(timeline_datas))
+
                         if self.percent != 1:
                             newlen = math.ceil(len(timeline_datas)*self.percent)
                             timeline_datas = timeline_datas[0:newlen]
 
-                        self.extract_data(user_data, timeline_datas)
+                        if len(timeline_datas) > 0: 
+                            print(len(timeline_datas))
+                            self.extract_data(user_data, timeline_datas)
 
         print('finish reading the timeline directory')
                     
@@ -296,8 +301,9 @@ class Extract(object):
             writer.writerow(user_list)
 
 
-test = Extract(_POSITIVE_PATH_, _POSITIVE_OUTPUT_PATH_)
-test1 = Extract(_POSITIVE_PATH_, _POSITIVE_OUTPUT_TEN_PATH_, 0.1)
+# test = Extract('./demo/data', './outputs/outputs_test.csv')
+# test = Extract(_POSITIVE_PATH_, _POSITIVE_OUTPUT_PATH_)
+# test1 = Extract(_POSITIVE_PATH_, _POSITIVE_OUTPUT_TEN_PATH_, 0.1)
 test2 = Extract(_NEGATIVE_PATH_, _NEGATIVE_OUTPUT_PATH_)
 test3 = Extract(_NEGATIVE_PATH_, _NEGATIVE_OUTPUT_TEN_PATH_, 0.1)
 
